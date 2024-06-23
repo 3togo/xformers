@@ -2,7 +2,9 @@
 export PATH="$(realpath "tools")":$PATH
 set_gcc.sh 12
 . ~/jvenv/bin/activate
-export MAX_JOBS=8
+# export MAX_JOBS=8
+export MAX_JOBS=$(( ($(nproc) > 0) ? ($(nproc) / 6) : 1 ))
+
 export TORCH_CUDA_ARCH_LIST="6.0;6.1;6.2;7.0;7.2;7.5;8.0;8.6"
 do_build()
 {
